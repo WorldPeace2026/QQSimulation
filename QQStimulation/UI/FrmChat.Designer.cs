@@ -1,4 +1,4 @@
-﻿namespace QQStimulation.UI
+﻿namespace QQSimulation.UI
 {
     partial class FrmChat
     {

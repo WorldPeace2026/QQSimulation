@@ -1,4 +1,4 @@
-﻿namespace QQStimulation
+﻿namespace QQSimulation
 {
     partial class FrmRegister
     {

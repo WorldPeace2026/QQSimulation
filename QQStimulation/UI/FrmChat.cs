@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sunny.UI;
 
-namespace QQStimulation.UI
+namespace QQSimulation.UI
 {
 
     public partial class FrmChat : UIForm

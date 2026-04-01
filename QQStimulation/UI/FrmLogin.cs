@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sunny.UI;
 using MySql.Data.MySqlClient;
-using QQStimulation.Utils;
+using QQSimulation.Utils;
 
 
-namespace QQStimulation
+namespace QQSimulation
 {
     public partial class FrmLogin : UIForm
     {

@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CD42B2D1-B958-4FEC-8F78-46C649DEBCE8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>QQStimulation</RootNamespace>
-    <AssemblyName>QQStimulation</AssemblyName>
+    <RootNamespace>QQSimulation</RootNamespace>
+    <AssemblyName>QQSimulation</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -149,6 +149,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UI\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>

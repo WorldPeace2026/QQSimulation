@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Sunny.UI;
-using QQStimulation.Utils;
+using QQSimulation.Utils;
 using System.Linq.Expressions;
-using QQStimulation.UI;
+using QQSimulation.UI;
 
-namespace QQStimulation
+namespace QQSimulation
 {
     public partial class FrmMain : UIForm
     {

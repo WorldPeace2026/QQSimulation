@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Sunny.UI;
-using QQStimulation.Utils;
+using QQSimulation.Utils;
 
-namespace QQStimulation
+namespace QQSimulation
 {
 
     public partial class FrmRegister : UIForm
