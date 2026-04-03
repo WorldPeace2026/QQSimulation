@@ -71,7 +71,7 @@
             this.txt_Input.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txt_Input.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(249)))), ((int)(((byte)(241)))));
             this.txt_Input.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txt_Input.Location = new System.Drawing.Point(13, 360);
+            this.txt_Input.Location = new System.Drawing.Point(4, 360);
             this.txt_Input.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_Input.MinimumSize = new System.Drawing.Size(1, 16);
             this.txt_Input.Multiline = true;
@@ -82,7 +82,7 @@
             this.txt_Input.ScrollBarStyleInherited = false;
             this.txt_Input.ShowScrollBar = true;
             this.txt_Input.ShowText = false;
-            this.txt_Input.Size = new System.Drawing.Size(592, 37);
+            this.txt_Input.Size = new System.Drawing.Size(592, 52);
             this.txt_Input.Style = Sunny.UI.UIStyle.Custom;
             this.txt_Input.TabIndex = 1;
             this.txt_Input.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;

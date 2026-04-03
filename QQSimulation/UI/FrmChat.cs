@@ -38,9 +38,11 @@ namespace QQSimulation.UI
         {
             string msg = this.txt_Input.Text;
             //防呆空发送
-            if(msg == "")
+            if(string.IsNullOrWhiteSpace(msg))
             {
                 MessageBox.Show("不能发送空消息！");
+                this.txt_Input.Text = "";
+                this.txt_Input.Focus();
                 return;
 
             }
@@ -50,9 +52,16 @@ namespace QQSimulation.UI
             this.txt_Input.Text = "";
         }
         private int _minHeight;//初始的单行高度
-        private int _maxHeight = 120;//膨胀的极限高度
+        private int _maxHeight = 127;//膨胀的极限高度
+        private int _midHeight = 85;
+        //绝对原点
+        private int _originalTop = -1;//用-1来表示未校准
+        //================================================隔离一下
+
         private void txt_Input_TextChanged(object sender, EventArgs e)
         {
+            //上电复位防呆设计
+            if (_originalTop == -1) _originalTop = this.txt_Input.Top;
             //1.量尺寸
             Size textSize = TextRenderer.MeasureText(
 
@@ -63,37 +72,35 @@ namespace QQSimulation.UI
                 TextFormatFlags.WordBreak
                 );
             //2.算文本框上下的边框厚度
-            int targetHeight = textSize.Height + 15;
-            //修改Top的高度，根据新高度的变化量，就是说新高度-老高度
-            if (targetHeight > _minHeight)
-            {
-                int diff = targetHeight - this.txt_Input.Height;
-                this.txt_Input.Top = this.txt_Input.Top - diff;
+            int targetHeight = textSize.Height + 10;
+            //加一个基准,算上下边框的厚度
+            int actualNewHeight = targetHeight;
+            if (actualNewHeight < _minHeight) actualNewHeight = _minHeight;
+            if (actualNewHeight > _maxHeight)
+            { actualNewHeight = _maxHeight;
+                if (!this.txt_Input.ShowScrollBar) this.txt_Input.ShowScrollBar= true;
+                //定位光标
+                this.txt_Input.SelectionStart = this.txt_Input.Text.Length;
+                //把滚动条滚到光标所在的位置上
+                this.txt_Input.ScrollToCaret();
             }
+            
             // 3. 【机械限位逻辑】：判断要不要拉伸文本框
-            if (targetHeight <= _minHeight)
+           if(actualNewHeight <= _midHeight)
             {
-                //字少的时候保持初始高度，隐藏滚动条
-                this.txt_Input.Height = _minHeight;
-                this.txt_Input.ShowScrollBar = false;
+                //第一阶段，上边框不长下边框长
+                this.txt_Input.Top = _originalTop;
+                this.txt_Input.Height = actualNewHeight;
             }
-            else if(targetHeight > _minHeight && targetHeight < _maxHeight)
-            {
-                //字超过一行，但是没有到极限，拉伸文本框，隐藏滚动条
-                this.txt_Input.Height = targetHeight;
-                this.txt_Input.ShowScrollBar = false;
-                //让光标始终保持在最后一行，跟随打字滚动
-                this.txt_Input.SelectionStart = this.txt_Input.Text.Length;
-                this.txt_Input.ScrollToCaret();
+
+            if (_midHeight < actualNewHeight && actualNewHeight<=_maxHeight)
+                {
+                int absoluteBottomAnchor = _originalTop + _midHeight;
+                this.txt_Input.Height = actualNewHeight;
+                this.txt_Input.Top = absoluteBottomAnchor - actualNewHeight;
+                if (this.txt_Input.ShowScrollBar) this.txt_Input.ShowScrollBar = false;
             }
-            else
-            {
-                //超过极限，锁死高度，顺便打开进度条的显示
-                this.txt_Input.Height = _maxHeight;
-                this.txt_Input.ShowScrollBar = true;
-                this.txt_Input.SelectionStart = this.txt_Input.Text.Length;
-                this.txt_Input.ScrollToCaret();
-            }
+           
         }
     }
 }
