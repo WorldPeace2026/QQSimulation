@@ -69,21 +69,15 @@ namespace QQSimulation.UI
                 this.txt_Input.Font,
                 new Size(this.txt_Input.Width - 10, int.MaxValue),
                 //减10是为了留点内边距
-                TextFormatFlags.WordBreak
+                TextFormatFlags.WordBreak | TextFormatFlags.TextBoxControl
                 );
             //2.算文本框上下的边框厚度
             int targetHeight = textSize.Height + 10;
             //加一个基准,算上下边框的厚度
             int actualNewHeight = targetHeight;
             if (actualNewHeight < _minHeight) actualNewHeight = _minHeight;
-            if (actualNewHeight > _maxHeight)
-            { actualNewHeight = _maxHeight;
-                if (!this.txt_Input.ShowScrollBar) this.txt_Input.ShowScrollBar= true;
-                //定位光标
-                this.txt_Input.SelectionStart = this.txt_Input.Text.Length;
-                //把滚动条滚到光标所在的位置上
-                this.txt_Input.ScrollToCaret();
-            }
+            if (actualNewHeight > _maxHeight) actualNewHeight = _maxHeight;
+            
             
             // 3. 【机械限位逻辑】：判断要不要拉伸文本框
            if(actualNewHeight <= _midHeight)
@@ -93,14 +87,28 @@ namespace QQSimulation.UI
                 this.txt_Input.Height = actualNewHeight;
             }
 
-            if (_midHeight < actualNewHeight && actualNewHeight<=_maxHeight)
-                {
+            else
+            {
                 int absoluteBottomAnchor = _originalTop + _midHeight;
                 this.txt_Input.Height = actualNewHeight;
                 this.txt_Input.Top = absoluteBottomAnchor - actualNewHeight;
+                
+            }
+           //要不要开滚动条，要不要光标锁定最后一行，要不要滚动条直接滚动到最后一行！
+           //代码分离，逻辑分离，越简单越好
+            if (targetHeight > _maxHeight)
+            {
+                // 真实高度溢出，亮红灯 (开滚动条)
+                if (!this.txt_Input.ShowScrollBar) this.txt_Input.ShowScrollBar = true;
+                this.txt_Input.SelectionStart = this.txt_Input.Text.Length;
+                this.txt_Input.ScrollToCaret();
+            }
+            else
+            {
+                // 真实高度安全，关红灯 (关滚动条)
                 if (this.txt_Input.ShowScrollBar) this.txt_Input.ShowScrollBar = false;
             }
-           
+
         }
     }
 }
