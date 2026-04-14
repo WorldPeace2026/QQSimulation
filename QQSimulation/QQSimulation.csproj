@@ -105,6 +105,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Network.cs" />
+    <Compile Include="TcpManager.cs" />
     <Compile Include="UI\FrmChat.cs">
       <SubType>Form</SubType>
     </Compile>

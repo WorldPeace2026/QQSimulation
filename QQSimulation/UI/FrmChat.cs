@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sunny.UI;
+using Sunny.UI.Win32;
 
 namespace QQSimulation.UI
 {
@@ -18,6 +19,8 @@ namespace QQSimulation.UI
         private string targetDeviceName;
         //端子声明
         private Action<string> _sendAction;
+        //全局网络对象
+        private Network _net;
         public FrmChat(string deviceName,Action<string>sendMethod)
         {
             InitializeComponent();
@@ -31,7 +34,9 @@ namespace QQSimulation.UI
 
         private void FrmChat_Load(object sender, EventArgs e)
         {
-
+            _net = new Network();
+            _net.OnDataReceived += this.ReceiveMessage;
+            _net.MockReceiveDataFromNetwork("Hello!我是底层网络发来的测试数据！");
         }
 
         private void btn_Send_Click(object sender, EventArgs e)
@@ -52,7 +57,7 @@ namespace QQSimulation.UI
             this.txt_Input.Text = "";
         }
         private int _minHeight;//初始的单行高度
-        private int _maxHeight = 127;//膨胀的极限高度
+        private int _maxHeight = 100;//膨胀的极限高度
         private int _midHeight = 85;
         //绝对原点
         private int _originalTop = -1;//用-1来表示未校准
