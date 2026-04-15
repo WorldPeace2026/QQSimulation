@@ -60,8 +60,21 @@ namespace QQSimulation
                         int realLen = BitConverter.ToInt32(buffer.ToArray(), 1);//这里要不要写int realLen = BitConverter.ToInt32.ToArray(buffer, 1);
                         int totalLen = realLen + 5;
                         if (totalLen > buffer.Count) break;
-                        string msg = Encoding.UTF8.GetString(buffer.Skip(5).Take(realLen).ToArray());
-                        OnMessageReceived?.Invoke(msg);
+                        byte msgType = buffer[0];
+                        if (msgType == 0)
+                        {
+                            string msg = Encoding.UTF8.GetString(buffer.Skip(5).Take(realLen).ToArray());
+                            OnMessageReceived?.Invoke(msg);
+                           }
+                        else if(msgType == 1) 
+                        {
+                        //暂时把图片设为1吧，可能后续还要表情
+                        }
+                        else if (msgType == 2)
+                        {
+                            //表情
+
+                        }
                         buffer.RemoveRange(0, totalLen);
                     }
 

@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="QQserver/QQserver.csproj" Id="d7c72cce-683c-4e44-ab55-df5c58cf7bb1" />
   <Project Path="QQSimulation/QQSimulation.csproj" Id="cd42b2d1-b958-4fec-8f78-46c649debce8" />
 </Solution>

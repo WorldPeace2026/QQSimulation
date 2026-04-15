@@ -27,7 +27,17 @@ namespace QQSimulation
             currentUser = user;//把外面传进来的账号，揣进全局变量
             this.Text = "QQ大本营——欢迎：" + currentUser;
             _socketNetwork = new SocketNetwork();
-        }
+            //特意为throw写的防闪退逻辑
+            try
+            {
+                _socketNetwork.ConnectToServer("127.0.0.1", 8888);
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show("警告：通讯模块启动失败，目前处于单机离线模式！\n底层原因："+ex.Message,"系统提示");
+            }
+            
+            }
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
