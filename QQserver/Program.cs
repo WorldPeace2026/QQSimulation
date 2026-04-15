@@ -33,11 +33,11 @@ namespace QQServer
         }
 
         // 这是分配给每一个客户的专属接待房间
-        static void ReceiveFromClient(Socket dedicatedSocket)
+        static void ReceiveFromClient(Socket dedicatedSocket)//传进来的是clientSocket，转换成了dedicatedSocket是吗？
         {
             // 准备一个接水的盆
             byte[] buffer = new byte[1024 * 1024];
-
+            List<byte>cache = new List<byte>();
             while (true)
             {
                 try
@@ -49,10 +49,18 @@ namespace QQServer
                         Console.WriteLine($"[系统提示] 客户 {dedicatedSocket.RemoteEndPoint} 正常断开了连接。");
                         break;
                     }
+                    cache.AddRange(buffer.Take(length));
+                    while (cache.Count >= 5) 
+                    {
+                        int len = BitConverter.ToInt32(cache.ToArray(),1);
+                        int totalLen = len + 1 + 4;
+                        if (totalLen > cache.Count) break;
+                        string msg = Encoding.UTF8.GetString(cache.ToArray(), 5, len);
 
-                    // ====== 重点在这里！ ======
-                    // 你需要在下面把收到的字节流（buffer），翻译成人类能看懂的字符串
-                    // 并且在控制台打印出来！
+                       
+                             cache.RemoveRange(0,totalLen);
+                    }
+
 
 
                 }
