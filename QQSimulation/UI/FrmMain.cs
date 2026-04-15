@@ -19,12 +19,14 @@ namespace QQSimulation
     {
         //申明一个全局变量，用来记住当前登录的账号
         public string currentUser;
+        public SocketNetwork _socketNetwork;
         //在括号里面强制加一个user，强迫必须出示账号才开门
         public FrmMain(string user)
         {
             InitializeComponent();
             currentUser = user;//把外面传进来的账号，揣进全局变量
             this.Text = "QQ大本营——欢迎：" + currentUser;
+            _socketNetwork = new SocketNetwork();
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -81,7 +83,7 @@ namespace QQSimulation
 
             string selectedName = this.listFriends.SelectedItem.ToString();
 
-            FrmChat frmChat = new FrmChat(selectedName,this.SendMessageToDevice);
+            FrmChat frmChat = new FrmChat(selectedName,this.SendMessageToDevice,this._socketNetwork);
             
             //取消独立属性
             frmChat.TopLevel = false;
@@ -99,6 +101,11 @@ namespace QQSimulation
             this.panelContainer.Controls.Add(frmChat);
             frmChat.ShowTitle = false;//去掉假标题栏
             frmChat.Show();
+        }
+
+        private void panelContainer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

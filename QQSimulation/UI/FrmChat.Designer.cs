@@ -30,7 +30,7 @@
         {
             this.btn_Send = new Sunny.UI.UIButton();
             this.txt_Input = new Sunny.UI.UITextBox();
-            this.uiTextBox1 = new Sunny.UI.UITextBox();
+            this.rtb_History = new Sunny.UI.UIRichTextBox();
             this.SuspendLayout();
             // 
             // btn_Send
@@ -90,31 +90,19 @@
             this.txt_Input.Watermark = "";
             this.txt_Input.TextChanged += new System.EventHandler(this.txt_Input_TextChanged);
             // 
-            // uiTextBox1
+            // rtb_History
             // 
-            this.uiTextBox1.ButtonFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiTextBox1.ButtonFillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(175)))), ((int)(((byte)(83)))));
-            this.uiTextBox1.ButtonFillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
-            this.uiTextBox1.ButtonRectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiTextBox1.ButtonRectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(175)))), ((int)(((byte)(83)))));
-            this.uiTextBox1.ButtonRectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
-            this.uiTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.uiTextBox1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(249)))), ((int)(((byte)(241)))));
-            this.uiTextBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiTextBox1.Location = new System.Drawing.Point(4, 40);
-            this.uiTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiTextBox1.MinimumSize = new System.Drawing.Size(1, 16);
-            this.uiTextBox1.Multiline = true;
-            this.uiTextBox1.Name = "uiTextBox1";
-            this.uiTextBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.uiTextBox1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiTextBox1.ScrollBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiTextBox1.ShowText = false;
-            this.uiTextBox1.Size = new System.Drawing.Size(792, 267);
-            this.uiTextBox1.Style = Sunny.UI.UIStyle.Custom;
-            this.uiTextBox1.TabIndex = 2;
-            this.uiTextBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiTextBox1.Watermark = "";
+            this.rtb_History.FillColor = System.Drawing.Color.White;
+            this.rtb_History.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.rtb_History.Location = new System.Drawing.Point(4, 40);
+            this.rtb_History.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rtb_History.MinimumSize = new System.Drawing.Size(1, 1);
+            this.rtb_History.Name = "rtb_History";
+            this.rtb_History.Padding = new System.Windows.Forms.Padding(2);
+            this.rtb_History.ShowText = false;
+            this.rtb_History.Size = new System.Drawing.Size(793, 268);
+            this.rtb_History.TabIndex = 2;
+            this.rtb_History.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FrmChat
             // 
@@ -122,7 +110,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(249)))), ((int)(((byte)(241)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBoxFillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(175)))), ((int)(((byte)(83)))));
-            this.Controls.Add(this.uiTextBox1);
+            this.Controls.Add(this.rtb_History);
             this.Controls.Add(this.txt_Input);
             this.Controls.Add(this.btn_Send);
             this.Name = "FrmChat";
@@ -140,6 +128,6 @@
 
         private Sunny.UI.UIButton btn_Send;
         private Sunny.UI.UITextBox txt_Input;
-        private Sunny.UI.UITextBox uiTextBox1;
+        private Sunny.UI.UIRichTextBox rtb_History;
     }
 }

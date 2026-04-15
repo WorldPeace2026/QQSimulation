@@ -49,6 +49,7 @@
             this.listFriends.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
             this.listFriends.ScrollBarBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(249)))), ((int)(((byte)(241)))));
             this.listFriends.ScrollBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
+            this.listFriends.ScrollBarStyleInherited = false;
             this.listFriends.ShowText = false;
             this.listFriends.Size = new System.Drawing.Size(270, 415);
             this.listFriends.Style = Sunny.UI.UIStyle.Custom;
@@ -70,7 +71,9 @@
             this.panelContainer.Size = new System.Drawing.Size(530, 415);
             this.panelContainer.Style = Sunny.UI.UIStyle.Custom;
             this.panelContainer.TabIndex = 1;
+            this.panelContainer.Text = null;
             this.panelContainer.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.panelContainer.Click += new System.EventHandler(this.panelContainer_Click);
             // 
             // FrmMain
             // 

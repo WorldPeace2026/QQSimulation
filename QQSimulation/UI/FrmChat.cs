@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sunny.UI;
-using Sunny.UI.Win32;
 
 namespace QQSimulation.UI
 {
@@ -20,25 +19,42 @@ namespace QQSimulation.UI
         //端子声明
         private Action<string> _sendAction;
         //全局网络对象
-        private Network _net;
-        public FrmChat(string deviceName,Action<string>sendMethod)
+        private SocketNetwork _net;
+        public FrmChat(string deviceName,Action<string>sendMethod,SocketNetwork _soc)
         {
             InitializeComponent();
             this.targetDeviceName = deviceName;
             this.Text = targetDeviceName;
             //接线，委托
             this._sendAction = sendMethod;
+            //接上通讯模块
+            this._net = _soc;
             //上电瞬间自动读取 UI 的物理高度作为下限挡块
             _minHeight = this.txt_Input.Height;
         }
-
+        /// <summary>
+        /// 跨线程安全接收并显示消息
+        /// </summary>
+        public void ReceiveMsg(string msg) 
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action<string>(ReceiveMsg), msg);//调用了之前写在SocketNetwork类的委托
+            }
+            else
+            {
+                this.rtb_History.AppendText($"[{targetDeviceName}]{DateTime.Now:HH:mm:ss}\r\n{msg}\r\n\r\n");
+                this.rtb_History.ScrollToCaret();
+            }
+        }
         private void FrmChat_Load(object sender, EventArgs e)
         {
-            _net = new Network();
-            _net.OnDataReceived += this.ReceiveMessage;
-            _net.MockReceiveDataFromNetwork("Hello!我是底层网络发来的测试数据！");
+           if(_net != null)
+            {
+                _net.OnMessageReceived += this.ReceiveMsg;
+            }
         }
-
+     
         private void btn_Send_Click(object sender, EventArgs e)
         {
             string msg = this.txt_Input.Text;

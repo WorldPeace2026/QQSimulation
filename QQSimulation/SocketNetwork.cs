@@ -9,7 +9,7 @@ using Org.BouncyCastle.Crypto.Paddings;
 
 namespace QQSimulation
 {
-    public class TcpManager
+    public class SocketNetwork
     {
         // 【核心解耦：事件大喇叭】
         // 任何人（界面、数据库）只要订阅了这个喇叭，收到消息就会被通知。
