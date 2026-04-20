@@ -63,7 +63,9 @@ namespace QQSimulation
                         byte msgType = buffer[0];
                         if (msgType == 0)
                         {
+
                             string msg = Encoding.UTF8.GetString(buffer.Skip(5).Take(realLen).ToArray());
+                            System.Windows.Forms.MessageBox.Show("【探针3响了】底层网卡收到服务器回传：\n" + msg);
                             OnMessageReceived?.Invoke(msg);
                            }
                         else if(msgType == 1) 

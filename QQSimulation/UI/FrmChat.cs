@@ -41,6 +41,7 @@ namespace QQSimulation.UI
             {
                 this.Invoke(new Action<string>(ReceiveMsg), msg);//调用了之前写在SocketNetwork类的委托
             }
+            //这里做了一个判断，是不是后台线程，如果是后台线程，再做一个委托，交给主UI线程执行
             else
             {
                 this.rtb_History.AppendText($"[{targetDeviceName}]{DateTime.Now:HH:mm:ss}\r\n{msg}\r\n\r\n");
